@@ -61,6 +61,7 @@ Tasks Completed:
 
 
 2. Future Scope
+- 
 
 - Clean up DB class, consolodate all updateEmployeeX & updateManagerX to just one updateEmployee & updateManager classes.
 
@@ -71,7 +72,11 @@ Tasks Completed:
   Possible solution: Using Interface class
 
 
-Google Docs link: https://docs.google.com/document/d/1Gv4wonKSqHxOfUuc6N5KSB25PTFb4_BZ-p-_Sr9YS7I/
+Google Docs link:
+- 
+https://docs.google.com/document/d/1Gv4wonKSqHxOfUuc6N5KSB25PTFb4_BZ-p-_Sr9YS7I/
 
-Trello link: https://trello.com/b/jq3wPAso/reward-redemption-system
+Trello link: 
+-
+https://trello.com/b/jq3wPAso/reward-redemption-system
 
