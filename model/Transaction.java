@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "transaction")
-public class transaction {
+public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -43,14 +43,14 @@ public class transaction {
 	public void setEmployee_username(String employee_username) {
 		this.employee_username = employee_username;
 	}
-	public transaction(Long id, Integer num_of_items, Integer point_value, String employee_username) {
+	public Transaction(Long id, Integer num_of_items, Integer point_value, String employee_username) {
 		super();
 		this.id = id;
 		this.num_of_items = num_of_items;
 		this.point_value = point_value;
 		this.employee_username = employee_username;
 	}
-	public transaction() {
+	public Transaction() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
