@@ -3,7 +3,7 @@
 
 1. Members and Tasks
 
-Kyung Joo: 
+Kyung Joo
 - 
 Tasks Given: 
 - 
@@ -23,7 +23,7 @@ Tasks Completed:
 - ManagerRepository
 - ManagerController
 
-Kofi Boateng: 
+Kofi Boateng
 - 
 Tasks Given: 
 - 
@@ -36,7 +36,7 @@ Tasks Completed:
 - Transaction
 - TransactionRepository
 - TransactionController
-Laura Shelly: 
+Laura Shelly
 - 
 Tasks Given:
 - 
@@ -50,7 +50,7 @@ Tasks Completed:
 - ItemRepository
 - ItemController
 
-Maryam Ali: 
+Maryam Ali
 - 
 Tasks Given:
 - 
