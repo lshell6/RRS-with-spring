@@ -47,10 +47,10 @@ Tasks Completed:
 Maryam Ali: 
 
 Tasks Given:
-- 
+
 
 Tasks Completed:
-- 
+
 
 2. Future Scope
 
