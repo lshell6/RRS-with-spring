@@ -62,7 +62,6 @@ Tasks Completed:
 
 
 2. Future Scope
-- 
 
 - Clean up DB class, consolodate all updateEmployeeX & updateManagerX to just one updateEmployee & updateManager classes.
 
