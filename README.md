@@ -3,7 +3,6 @@
 
 1. Members and Tasks
 - 
-
 Kyung Joo
 - 
 Tasks Given: 
