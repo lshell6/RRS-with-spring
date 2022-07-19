@@ -4,7 +4,7 @@
 1. Members and Tasks
 
 Kyung Joo: 
-
+- 
 Tasks Given: 
 - 
 - Employee
@@ -15,6 +15,7 @@ Tasks Given:
 - ManagerController
 
 Tasks Completed:
+- 
 - Employee
 - EmployeeRepository
 - EmployeeController
@@ -23,34 +24,40 @@ Tasks Completed:
 - ManagerController
 
 Kofi Boateng: 
-
+- 
 Tasks Given: 
+- 
 - Transaction
 - TransactionRepository
 - TransactionController
 
 Tasks Completed: 
+- 
 - Transaction
 - TransactionRepository
 - TransactionController
 Laura Shelly: 
-
+- 
 Tasks Given:
+- 
 - Item
 - ItemRepository
 - ItemController
 
 Tasks Completed:
+- 
 - Item
 - ItemRepository
 - ItemController
 
 Maryam Ali: 
-
+- 
 Tasks Given:
+- 
 
 
 Tasks Completed:
+- 
 
 
 2. Future Scope
