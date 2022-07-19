@@ -2,6 +2,7 @@
 ----- README -----
 
 1. Members and Tasks
+- 
 
 Kyung Joo
 - 
