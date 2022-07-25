@@ -13,7 +13,7 @@ public class ManagerController {
 	@Autowired
 	private ManagerRepository managerRepository;
 	
-	@PostMapping("/employee")
+	@PostMapping("/manager")
 	public void postManager(@RequestBody Manager manager) {
 		// we use JpaRepository Interface
 		managerRepository.save(manager);
