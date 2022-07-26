@@ -37,6 +37,7 @@ Tasks Completed:
 - Transaction
 - TransactionRepository
 - TransactionController
+
 Laura Shelly
 - 
 Tasks Given:
