@@ -14,6 +14,7 @@ Tasks Given:
 - Manager
 - ManagerRepository
 - ManagerController
+- GivePoints
 
 Tasks Completed:
 - 
@@ -23,6 +24,7 @@ Tasks Completed:
 - Manager
 - ManagerRepository
 - ManagerController
+- GivePoints
 
 Kofi Boateng
 - 
