@@ -19,12 +19,12 @@ import com.rewards.backend.repository.ItemRepository;
 public class ItemController {
 	@Autowired
 	private ItemRepository itemRepository;
-	
+	//save item
 	@PostMapping("/item")
 	public void postItem(@RequestBody Item item) {
 		itemRepository.save(item);
 	}
-	
+	//get single item
 	@GetMapping("/item/single/{id}")
 	public Item getSingleItemById(@PathVariable("id") Long id) {
 		Optional<Item> optional = itemRepository.findById(id);
@@ -32,12 +32,12 @@ public class ItemController {
 			return optional.get();
 		throw new RuntimeException("ID is invalid");
 	}
-	
+	//delete item
 	@DeleteMapping("/item/{id}")
 	public void deleteItem(@PathVariable("id") Long id) {
 		itemRepository.deleteById(id);
 	}
-	
+	//add item
 	@PutMapping("/item/{id}")
 	public Item updateItem(@PathVariable("id") Long id,
 			@RequestBody Item newItem){
@@ -51,10 +51,16 @@ public class ItemController {
 		}else
 			throw new RuntimeException("ID is invalid");
 	}
-	
+	//get all items
 	@GetMapping("/item")
 	public List<Item> getAllItems(){
 		List<Item> list = itemRepository.findAll();
 		return list;
 	}
+	//getting item point value
+	@GetMapping("/item/{id}")
+	public int getItemPtValue(@PathVariable("id") Long id) {
+		return itemRepository.getItemPtValue(id);
+	}
+	
 }

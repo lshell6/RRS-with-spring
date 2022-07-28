@@ -1,3 +1,4 @@
+package com.rewards.backend.controller;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.rewards.backend.model.Employee;
+import com.rewards.backend.model.EmployeeItems;
+import com.rewards.backend.model.Item;
+import com.rewards.backend.repository.EmployeeItemsRepository;
+import com.rewards.backend.repository.EmployeeRepository;
+import com.rewards.backend.repository.ItemRepository;
 
 @RestController
 public class EmployeeItemsController {

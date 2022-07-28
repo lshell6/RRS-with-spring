@@ -15,4 +15,6 @@ public interface ItemRepository extends JpaRepository<Item, Long>{
 	Item getItemById(Long id);
 	@Query("delete from Item where id=?1")
 	void deleteById(Long id);
+	@Query("select point_value from Item where id=?1")
+	int getItemPtValue(Long id);
 }
