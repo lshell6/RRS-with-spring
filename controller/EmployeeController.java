@@ -63,6 +63,30 @@ public class EmployeeController {
 			throw new RuntimeException("ID is invalid");
 	}
 	
+	// update points
+	@PutMapping("/employee/{id}/{pts}")
+	public Employee updatePoints(@PathVariable("id") Long id,
+			@PathVariable("pts") Integer pts,
+			@RequestBody Employee newEmployee) {
+		Optional<Employee> optional = employeeRepository.findById(id);
+		if(optional.isPresent()) {
+			Employee existingEmployee = optional.get();
+			
+			int currentPts = newEmployee.getCurrent_points();
+			currentPts += pts;
+			
+			int totalPts = newEmployee.getTotal_points();
+			totalPts += pts;
+			
+			existingEmployee.setCurrent_points(currentPts);
+			existingEmployee.setTotal_points(totalPts);
+			
+			return employeeRepository.save(existingEmployee);
+		}
+		else
+			throw new RuntimeException("ID is invalid");
+	}
+	
 	
 	
 }
