@@ -1,10 +1,13 @@
 package com.rewards.backend.controller;
 
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,19 +16,42 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rewards.backend.dto.EmployeeDto;
 import com.rewards.backend.model.Employee;
 import com.rewards.backend.repository.EmployeeRepository;
 
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 public class EmployeeController {
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	//post
 	@PostMapping("/employee")
-	public void postEmployee(@RequestBody Employee employee) {
+	public Employee postEmployee(@RequestBody Employee employee) {
 		// we use JpaRepository Interface
-		employeeRepository.save(employee);
+		Employee info = employeeRepository.getByEmployeeUsername(employee.getUsername());
+		if(info != null)
+			throw new RuntimeException("Invalid Username");
+		String password = employee.getPassword();
+		password = passwordEncoder.encode(password);
+		employee.setPassword(password);
+		return employeeRepository.save(employee);
+	}
+	//login
+	@GetMapping("/employeeLogin")
+	public EmployeeDto login(Principal principal) {
+		String username = principal.getName();
+		Employee info = employeeRepository.getByEmployeeUsername(username);
+		EmployeeDto dto = new EmployeeDto();
+		dto.setId(info.getId());
+		dto.setName(info.getName());
+		dto.setUsername(info.getUsername());
+		dto.setCurrent_points(info.getCurrent_points());
+		dto.setTotal_points(info.getTotal_points());
+		return dto;
 	}
 	//find all
 	@GetMapping("/employee")
@@ -61,8 +87,5 @@ public class EmployeeController {
 		}
 		else
 			throw new RuntimeException("ID is invalid");
-	}
-	
-	
-	
+	}	
 }
