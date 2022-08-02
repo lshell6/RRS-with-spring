@@ -1,9 +1,12 @@
 package com.rewards.backend.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,21 +15,41 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rewards.backend.dto.ManagerDto;
 import com.rewards.backend.model.Employee;
 import com.rewards.backend.model.Manager;
 import com.rewards.backend.repository.ManagerRepository;
 
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 public class ManagerController {
 	@Autowired
 	private ManagerRepository managerRepository;
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	//post
 	@PostMapping("/manager")
-	public void postManager(@RequestBody Manager manager) {
+	public Manager postManager(@RequestBody Manager manager) {
 		// we use JpaRepository Interface
-		managerRepository.save(manager);
-	} 
+		Manager info = managerRepository.getByManagerUsername(manager.getUsername());
+		if(info != null)
+			throw new RuntimeException("Invalid Username");
+		String password = manager.getPassword();
+		password = passwordEncoder.encode(password);
+		manager.setPassword(password);
+		return managerRepository.save(manager);
+	}
+	//login
+	@GetMapping("/managerLogin")
+	public ManagerDto login(Principal principal) {
+		String username = principal.getName();
+		Manager info = managerRepository.getByManagerUsername(username);
+		ManagerDto dto = new ManagerDto();
+		dto.setId(info.getId());
+		dto.setName(info.getName());
+		dto.setUsername(info.getUsername());
+		return dto;
+	}
 	//find all
 	@GetMapping("/manager")
 	public List<Manager> getAllManagers(){
