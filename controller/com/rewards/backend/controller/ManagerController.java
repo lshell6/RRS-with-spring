@@ -59,5 +59,9 @@ public class ManagerController {
 		}
 		else
 			throw new RuntimeException("ID is invalid");
-	}	
+	}
+	//search by emp name
+	
+	//giving pts to emp
+	
 }

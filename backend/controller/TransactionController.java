@@ -19,18 +19,18 @@ import com.rewards.backend.repository.TransactionRepository;
 public class TransactionController {
 	@Autowired
 	private TransactionRepository transactionRepository;
-	
+	//save transaction
 	@PostMapping("/transaction")
 	public void postTransaction(@RequestBody Transaction transaction) {
 		transactionRepository.save(transaction);
 	}
-	
+	//get all transactions
 	@GetMapping("/transaction")
 	public List<Transaction> getAllTransactions() {
 		List<Transaction> list = transactionRepository.findAll();
 		return list;
 	}
-	
+	//get single transaction
 	@GetMapping("/transaction/single/{id}")
 	public Transaction getSingleTransactionById(@PathVariable("id") Long id) {
 		Optional<Transaction> optional = transactionRepository.findById(id);
@@ -40,12 +40,12 @@ public class TransactionController {
 			throw new RuntimeException("ID is invalid");
 		}	
 	}
-	
+	//delete single transaction
 	@DeleteMapping("/transaction/{id}")
 	public void deleteTransaction(@PathVariable("id") Long id) {
 		transactionRepository.deleteById(id);
 	}
-	
+	//add new transaction
 	@PutMapping("/transaction/{id}")
 	public Transaction updateTransaction(@PathVariable("id") Long id, @RequestBody Transaction newTransaction) {
 		Optional<Transaction> optional = transactionRepository.findById(id);
@@ -58,5 +58,10 @@ public class TransactionController {
 		} else {
 			throw new RuntimeException("ID is invalid");
 		}
+	}
+	//get transaction by employee
+	@GetMapping("/transaction/{employee_username}")
+	public List<Transaction> getTranasctionByEmployee(@PathVariable("employeeUsername") String username) {
+		return transactionRepository.getTransactionByEmployee(username);
 	}
 }

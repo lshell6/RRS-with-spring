@@ -1,5 +1,7 @@
 package com.rewards.backend.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,9 @@ public class Transaction {
 	private Integer point_value;
 	@Column(nullable = false)
 	private String employee_username;
+	@Column(nullable=false)
+	private Date purchase_date;
+	
 	public Long getId() {
 		return id;
 	}
@@ -43,22 +48,30 @@ public class Transaction {
 	public void setEmployee_username(String employee_username) {
 		this.employee_username = employee_username;
 	}
-	public Transaction(Long id, Integer num_of_items, Integer point_value, String employee_username) {
+	public Transaction() {
+		super();
+	}
+	public Transaction(Long id, Integer num_of_items, Integer point_value, String employee_username,
+			Date purchaseDate) {
 		super();
 		this.id = id;
 		this.num_of_items = num_of_items;
 		this.point_value = point_value;
 		this.employee_username = employee_username;
+		this.purchase_date = purchaseDate;
 	}
-	public Transaction() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Date getPurchaseDate() {
+		return purchase_date;
+	}
+	public void setPurchaseDate(Date purchaseDate) {
+		this.purchase_date = purchaseDate;
 	}
 	@Override
 	public String toString() {
-		return "transaction [id=" + id + ", num_of_items=" + num_of_items + ", point_value=" + point_value
-				+ ", employee_username=" + employee_username + "]";
+		return "Transaction [id=" + id + ", num_of_items=" + num_of_items + ", point_value=" + point_value
+				+ ", employee_username=" + employee_username + ", purchaseDate=" + purchase_date + "]";
 	}
+
 	
 	
 	
