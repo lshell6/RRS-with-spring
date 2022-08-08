@@ -1,6 +1,6 @@
 package com.rewards.backend.model;
 
-import java.util.List;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "employee")
@@ -33,13 +31,22 @@ public class Employee {
 	@Column(columnDefinition = "integer default 0")
 	private Integer total_points;
 
+	@Column(nullable = false)
+	private String securityQuestion;
+	
+	@Column(nullable = false)
+	private String securityAnswer;
+	
+	private LocalDate passwordLastReset;
+
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	public Employee(Long id, String name, String username, String password, Integer current_points,
-			Integer total_points) {
+			Integer total_points, String securityQuestion, String securityAnswer, LocalDate passwordLastReset) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -47,11 +54,11 @@ public class Employee {
 		this.password = password;
 		this.current_points = current_points;
 		this.total_points = total_points;
+		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
+		this.passwordLastReset = passwordLastReset;
 	}
 
-	public Employee(String username2, String password2, List<GrantedAuthority> list) {
-		// TODO Auto-generated constructor stub
-	}
 
 	public Long getId() {
 		return id;
@@ -100,6 +107,43 @@ public class Employee {
 	public void setTotal_points(Integer total_points) {
 		this.total_points = total_points;
 	}
-	
+
+
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+
+
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
+
+
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+
+
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
+	}
+
+
+	public LocalDate getPasswordLastReset() {
+		return passwordLastReset;
+	}
+
+
+	public void setPasswordLastReset(LocalDate passwordLastReset) {
+		this.passwordLastReset = passwordLastReset;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password
+				+ ", current_points=" + current_points + ", total_points=" + total_points + ", securityQuestion="
+				+ securityQuestion + ", securityAnswer=" + securityAnswer + ", passwordLastReset=" + passwordLastReset
+				+ "]";
+	}	
 	
 }
