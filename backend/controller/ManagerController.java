@@ -46,7 +46,7 @@ public class ManagerController {
 		managerRepository.save(manager);
 	}
 	//login
-	@GetMapping("/managerLogin")
+	@GetMapping("/manager-login")
 	public ManagerInfoDto login(Principal principal) {
 		String username = principal.getName();
 		Manager info = managerRepository.getByManagerUsername(username);
