@@ -95,9 +95,9 @@ public class EmployeeController {
 		else
 			throw new RuntimeException("ID is invalid");
 	}
-	//Verify Security Question
+	//Verify Security Answer
 	@GetMapping("/verify-security-answer")
-	public boolean verifySecurityQuestion(@PathVariable("encodedText") String encodedText) {
+	public boolean verifySecurityAnswer(@PathVariable("encodedText") String encodedText) {
 		boolean status = false;
 		String str = new String(Base64.getDecoder().decode(encodedText));
 		String[] sarr = str.split("--");
