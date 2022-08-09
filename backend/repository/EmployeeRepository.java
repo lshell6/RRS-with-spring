@@ -16,6 +16,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	
 	@Transactional
 	@Modifying
-	@Query("update Employee e SET e.password=?2,e.passwordLastReset=?3 where e.username=?1")
+	@Query("update employee e SET e.password=?2,e.passwordLastReset=?3 where e.username=?1")
 	void resetPassword(String username, String password, LocalDate date);
 }
