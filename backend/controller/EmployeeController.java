@@ -48,7 +48,7 @@ public class EmployeeController {
 		employeeRepository.save(employee);
 	}
 	//login
-	@GetMapping("/employeeLogin")
+	@GetMapping("/employee-login")
 	public EmployeeInfoDto login(Principal principal) {
 		String username = principal.getName();
 		Employee info = employeeRepository.getByEmployeeUsername(username);
