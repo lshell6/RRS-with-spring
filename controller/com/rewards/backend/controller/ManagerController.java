@@ -64,4 +64,116 @@ public class ManagerController {
 	
 	//giving pts to emp
 	
+	
+//login
+
+@GetMapping("manager/login")
+
+public ManagerInfoDto login(Principal principal) {
+
+String username = principal.getName();
+
+Manager info = managerRepository.getByUsername(username);
+
+ManagerInfoDto dto = new ManagerInfoDto();
+
+dto.setId(info.getId());
+
+dto.setName(info.getName());
+
+dto.setUsername(info.getUsername());
+
+return dto;
+
+}
+
+//get manager by username
+
+@GetMapping("manager/username")
+
+public ManagerEditDto getManagerByUsername(Principal principal) {
+
+Manager info = managerRepository.getByUsername(principal.getName());
+
+ManagerEditDto dto = new ManagerEditDto(info.getId(), info.getName(), info.getSecurityQuestion(), info.getSecurityAnswer());
+
+return dto;
+
+}
+
+//update profile
+
+@PutMapping("manager/profile")
+
+public void profileEdit(Principal principal, @RequestBody ManagerDto dto) {
+
+String username = principal.getName();
+
+managerRepository.updateProfile(username, dto.getName(), dto.getSecurityQuestion(), dto.getSecurityAnswer());
+
+}
+
+//getting manager info by username
+
+@GetMapping("manager/security/info/{username}")
+
+public ManagerEditDto getManagerInfo(@PathVariable("username") String username) {
+
+Manager info = managerRepository.getByUsername(username);
+
+ManagerEditDto dto = new ManagerEditDto(info.getId(), info.getName(), "", info.getSecurityQuestion());
+
+return dto;
+
+}
+
+//validate security answer
+
+@GetMapping("manager/validate-security-answer/{encodedText}")
+
+public boolean verifySecurityAnswer(@PathVariable("encodedText") String encodedText) {
+
+boolean status = false;
+
+String str = new String(Base64.getDecoder().decode(encodedText));
+
+String[] arr = str.split("--");
+
+String username = arr[0];
+
+String answer = arr[1];
+
+Manager info = managerRepository.getByUsername(username);
+
+if(info.getSecurityAnswer().equalsIgnoreCase(answer)) {
+
+status = true;
+
+}
+
+return status;
+
+}
+
+//reset-password
+
+@PutMapping("manager/reset-password/{encodedText}")
+
+public void resetPassword(@PathVariable("encodedText") String encodedText) {
+
+boolean status = false;
+
+String str = new String(Base64.getDecoder().decode(encodedText));
+
+String[] strings = str.split("--");
+
+String username = strings[0];
+
+String password = strings[1];
+
+managerRepository.resetPassword(username, password, LocalDate.now());
+
+}
+
+	
 }
